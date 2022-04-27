@@ -1,4 +1,4 @@
-## Welcome to GitHub Pages
+## Intro to Shōrin-ryū (karate)
 
 You can use the [editor on GitHub](https://github.com/Cats1337/karate.github.io/edit/gh-pages/index.md) to maintain and preview the content for your website in Markdown files.
 
