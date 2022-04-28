@@ -45,7 +45,7 @@
     display: block;
     margin-right: auto;
     margin-left: auto;
-    margin-bottom: -5px;
+    margin-bottom: -10px;
 }
 
 .scroll{
@@ -59,8 +59,19 @@
     margin-right: auto;
     /* transition: left .5 ease-in, top .5s ease-in; */
 }
-/*  */
 
+.center{
+    display: block;
+    margin-left: auto;
+    margin-left: right;
+    position: absolute;
+    width: 100%;
+    text-align: center;
+    font-size: 24px;
+}
+.center a{
+    text-decoration: none;
+}
 
 h1 {padding: 40px; text-align: center; font-size: 1.5em;}
 
@@ -88,7 +99,6 @@ nav {
 }
 
 span {
-  /* background : #2ffcbe63;  */
   color:#2195f300;
   cursor : pointer;
   display: block;
@@ -116,13 +126,6 @@ span {
 
 
 
-
-
-
-
-/*  */
-
-
 body {
     color:#8DB7FF;
 }
@@ -143,7 +146,7 @@ a:active {
     color: blue;
   }
 
-/* @media only screen and (min-width: 1230px){ */
+@media only screen and (min-width: 1230px){
 body {
     background-image: url("../assets/images/post.png");
     /* background-repeat: repeat; */
@@ -152,8 +155,8 @@ body {
     background-repeat: repeat;
     background-attachment: scroll;
   }
-/* } */
-/* @media only screen and (max-width: 1230px){
+}
+@media only screen and (max-width: 1230px){
     body {
         background-image: url("../assets/images/pattern.png");
         background-repeat: repeat;
@@ -161,6 +164,6 @@ body {
         background-position: center 10%;
         background-repeat: repeat;
         background-attachment: scroll;
-      }
-    } */
+    }
+}
 
