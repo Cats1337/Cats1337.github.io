@@ -10,6 +10,10 @@ a {
     text-decoration: none;
 }
 
+.center {
+    display: block;
+}
+
 td {
     border: 1px solid slategrey;
     color: #3bc7ff;
@@ -31,15 +35,14 @@ td {
     background-position: 0 0;
     background-size: auto 100%;
     opacity: .1;
+    z-index: -1;
 }
 
 @keyframes binguses {
     from{
-        /* opacity: .1; */
         background-position: 0 0;
     }
     to{
-        /* opacity: .2; */
         background-position: 0 10000px;
     }
 }
