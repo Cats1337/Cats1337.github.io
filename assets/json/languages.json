@@ -1,0 +1,6 @@
+{
+  "Proficient": ["Java", "Python", "LUA", "HTML5", "CSS3", "JavaScript", "PHP", "MySQL"],
+  "Known": ["Brainf**k", "LOLCODE"],
+  "Interested": ["C", "C#", "C++", "Kotlin", "COBOL"],
+  "Tools": ["VSC", "IntelliJ", "Eclipse"]
+}
