@@ -132,6 +132,7 @@ h1, h2 {
 
 .language {
   text-align: center;
+  min-width: 85px;
 }
 
 .language img {
