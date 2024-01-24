@@ -16,12 +16,24 @@ body {
   background-color: black;
 }
 
-.wrapper {
+.wrapper{
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  grid-template-rows: repeat(3, 1fr);
+  grid-gap: 10px;
+  width: 100vw;
+  height: 100vh;
+  grid-template-areas: ". info .";
+  padding: 10px 0;
+}
+
+.info-wrapper {
   display: grid;
   justify-items: center;
   position: relative;
   height: 100%;
   z-index: 2;
+  grid-area: info;
 }
 
 .container {
@@ -169,8 +181,20 @@ h1, h2 {
   gap: 10px;
 }
 
-#irov {
-  width: 128px;
+#irov, #tfhr {
+  max-width: 128px;
+  margin: auto;
+}
+
+.socials img{
+  max-width: 32px;
+  cursor: pointer;
+}
+
+.socials {
+  display: flex;
+  gap: 10px;
+  justify-content: center;
   margin: auto;
 }
 

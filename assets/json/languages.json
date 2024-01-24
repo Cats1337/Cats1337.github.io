@@ -1,6 +1,6 @@
 {
   "Proficient": ["Java", "Python", "LUA", "HTML5", "CSS3", "JavaScript", "PHP", "MySQL"],
-  "Known": ["C", "Brainf**k", "LOLCODE"],
-  "Interested": ["C#", "C++", "Kotlin", "COBOL"],
+  "Known": ["C#", "Brainf**k", "LOLCODE"],
+  "Interested": ["C", "C++", "Kotlin", "COBOL"],
   "Tools": ["VSC", "IntelliJ", "Eclipse"]
 }
