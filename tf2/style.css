@@ -121,3 +121,7 @@ box-shadow:none;
 .timer_9{
   background-image: url(images/timer_nine.png);
 }
+
+.timer_0, .timer_1, .timer_2, .timer_3, .timer_4, .timer_5, .timer_6, .timer_7, .timer_8, .timer_9{
+ transition: all 0.5s ease-in-out;
+}

@@ -1,7 +1,7 @@
 // Fetch the language data from the JSON file
 async function fetchLanguages() {
   try {
-    const response = await fetch('assets/json/languages.json');
+    const response = await fetch('portfolioAssets/json/languages.json');
 
     if (!response.ok) {
       throw new Error(`Network response was not ok. Status: ${response.status}`);
@@ -62,7 +62,7 @@ function displayLanguages(categories) {
 
           // Create an image element
           const image = document.createElement('img');
-          image.src = `assets/images/${imageFileName}`;
+          image.src = `portfolioAssets/images/${imageFileName}`;
           image.alt = languages[j];
 
           // Append the image to the language div
