@@ -16,81 +16,98 @@ async function fetchLanguages() {
   }
 }
 
+// Function to transform code names
+function transformCodeName(codeName) {
+  return codeName.toLowerCase().replace(/[\*\+#]/g, (match) => {
+    if (match === '*') return '';
+    if (match === '#') return 'sharp';
+    if (match === '+') return 'plus';
+  });
+}
+
+// Function to create an image element
+function createImage(src, alt) {
+  const image = document.createElement('img');
+  image.src = src;
+  image.alt = alt;
+  return image;
+}
+
+// Function to create a paragraph element
+function createParagraph(text) {
+  const p = document.createElement('p');
+  p.innerText = text;
+  return p;
+}
+
 // Function to display languages with corresponding images
 function displayLanguages(categories) {
   const imageMapsContainer = document.getElementById('imageMaps');
 
-  // Helper function to transform code names
-  function transformCodeName(codeName) {
-    return codeName.toLowerCase().replace(/\*/g, '').replace(/#/g, 'sharp').replace(/\+/g, 'p');
-  }
-
-  // Iterate over each category in the JSON file
   for (const category in categories) {
     if (categories.hasOwnProperty(category)) {
       const languages = categories[category];
 
-      // Create a div for each category
       const categoryDiv = document.createElement('div');
       categoryDiv.classList.add('category');
 
-      // Create a heading for the category
       const categoryHeading = document.createElement('h2');
-      categoryHeading.textContent = category + " Languages";
-      if (category === 'Tools') {
-        categoryHeading.textContent = category;
-      }
+      categoryHeading.textContent = category === 'Tools' ? category : category + " Languages";
 
-      // Append the heading to the category div
       categoryDiv.appendChild(categoryHeading);
 
-      // Iterate over each language in the category
+      // Display the languages in groups of 4
       for (let i = 0; i < languages.length; i += 4) {
-        // Create a container div for languages using flexbox
         const languagesContainer = document.createElement('div');
         languagesContainer.classList.add('languages-container');
 
-        // Iterate over each language in the current batch of four
         for (let j = i; j < i + 4 && j < languages.length; j++) {
-          // Create a div for each language
           const languageDiv = document.createElement('div');
           languageDiv.classList.add('language');
 
-          // Get the transformed image file name for the language
+          // Transform the code name to match the image file name
           const transformedCodeName = transformCodeName(languages[j]);
-          const imageFileName = `${transformedCodeName}.svg`;
 
-          // Create an image element
-          const image = document.createElement('img');
-          image.src = `portfolioAssets/images/${imageFileName}`;
-          image.alt = languages[j];
+          // If the language is not in the devicon library, use custom image
+          if (transformedCodeName === 'cobol') {
+            const image = createImage(`portfolioAssets/images/${transformedCodeName}.svg`, languages[j]);
+            languageDiv.appendChild(image);
+            languageDiv.appendChild(createParagraph(languages[j]));
+            languagesContainer.appendChild(languageDiv);
+            continue;
+          }
 
-          // Append the image to the language div
+          // If the language is MySQL, use the wordmark image
+          if (transformedCodeName === 'mysql') {
+            const imageFolderName = `${transformedCodeName}`;
+            const imageFileName = `${transformedCodeName}-original-wordmark.svg`;
+            const image = createImage(`https://raw.githubusercontent.com/devicons/devicon/master/icons/${imageFolderName}/${imageFileName}`, languages[j]);
+            languageDiv.appendChild(image);
+            languageDiv.appendChild(createParagraph(languages[j]));
+            languagesContainer.appendChild(languageDiv);
+            continue;
+          }
+
+          // get the image from the devicon library
+          const imageFolderName = `${transformedCodeName}`;
+          const imageFileName = `${transformedCodeName}-original.svg`;
+
+          // Create the image element and append it to the language div
+          const image = createImage(`https://raw.githubusercontent.com/devicons/devicon/master/icons/${imageFolderName}/${imageFileName}`, languages[j]);
           languageDiv.appendChild(image);
-
-          // Create a paragraph element for the language name
-          const p = document.createElement('p');
-          p.innerText = languages[j];
-
-          // Append the paragraph to the language div
-          languageDiv.appendChild(p);
-
-          // Append the language div to the languages container
+          languageDiv.appendChild(createParagraph(languages[j]));
           languagesContainer.appendChild(languageDiv);
         }
 
-        // Add a style to center the languages when there are fewer than four
         const numberOfLanguages = languages.length - i;
         if (numberOfLanguages < 4) {
           languagesContainer.style.justifyContent = 'center';
           languagesContainer.style.display = 'flex';
         }
 
-        // Append the languages container to the category div
         categoryDiv.appendChild(languagesContainer);
       }
 
-      // Append the category div to the imageMaps container
       imageMapsContainer.appendChild(categoryDiv);
     }
   }
@@ -98,4 +115,3 @@ function displayLanguages(categories) {
 
 // Call the function to fetch and display languages
 fetchLanguages();
-

@@ -1,6 +1,6 @@
 {
-  "Proficient": ["Java", "Python", "LUA", "HTML5", "CSS3", "JavaScript", "PHP", "MySQL"],
-  "Known": ["C#", "C", "LOLCODE"],
+  "Proficient": ["Java", "Python", "LUA", "HTML5", "CSS3", "JavaScript", "PHP", "MySQL", "TypeScript", "Git"],
+  "Known": ["C#", "C", "React", "Svelte"],
   "Interested": ["C++", "Kotlin", "COBOL"],
-  "Tools": ["VSC", "IntelliJ", "Eclipse"]
+  "Tools": ["VSCode", "IntelliJ", "Eclipse"]
 }
