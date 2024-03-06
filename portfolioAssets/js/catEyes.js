@@ -1,4 +1,8 @@
+let timeout;
+
 document.addEventListener("mousemove", (e) => {
+    clearTimeout(timeout); // Clear the previous timeout if there was any
+
     const eyes = document.querySelectorAll(".eye");
 
     eyes.forEach((eye) => {
@@ -32,4 +36,14 @@ document.addEventListener("mousemove", (e) => {
             rightPupil.style.transform = `translate(-50%, -50%) translate(${mirroredPupilX}px, ${pupilY}px)`;
         }
     });
+
+    // Set a timeout to return the eyes to normal position after 10 seconds
+    timeout = setTimeout(() => {
+        eyes.forEach((eye) => {
+            const pupils = eye.querySelectorAll(".eye-pupil");
+            pupils.forEach((pupil) => {
+                pupil.style.transform = "translate(0%, 0%) translate(0, 0)";
+            });
+        });
+    }, 10000); // 10 seconds in milliseconds
 });
