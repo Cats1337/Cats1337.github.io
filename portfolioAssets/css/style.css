@@ -173,6 +173,11 @@ h1, h2 {
   text-align: center;
 }
 
+.years-grey {
+  color: grey;
+  font-style: italic;
+}
+
 .info-container :link, .info-container :visited {
   color: aqua;
   text-decoration: none;

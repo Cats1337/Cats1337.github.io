@@ -35,9 +35,12 @@ function createImage(src, alt) {
 }
 
 // Function to create a paragraph element
-function createParagraph(text) {
+function createParagraph(text, className = '') {
   const p = document.createElement('p');
   p.innerText = text;
+  if (className) {
+    p.classList.add(className);
+  }
   return p;
 }
 
@@ -82,7 +85,7 @@ function displayLanguages(categories) {
             const image = createImage(`portfolioAssets/images/${transformedCodeName}.svg`, language);
             languageDiv.appendChild(image);
             languageDiv.appendChild(createParagraph(language));
-            languageDiv.appendChild(createParagraph(`${year} - ${calculateYearsSince(year)} years`));
+            languageDiv.appendChild(createParagraph(`${calculateYearsSince(year)} years`, 'years-grey'));
             languagesContainer.appendChild(languageDiv);
             continue;
           }
@@ -94,7 +97,7 @@ function displayLanguages(categories) {
             const image = createImage(`https://raw.githubusercontent.com/devicons/devicon/master/icons/${imageFolderName}/${imageFileName}`, language);
             languageDiv.appendChild(image);
             languageDiv.appendChild(createParagraph(language));
-            languageDiv.appendChild(createParagraph(`${year} - ${calculateYearsSince(year)} years`));
+            languageDiv.appendChild(createParagraph(`${calculateYearsSince(year)} years`, 'years-grey'));
             languagesContainer.appendChild(languageDiv);
             continue;
           }
@@ -107,7 +110,7 @@ function displayLanguages(categories) {
           const image = createImage(`https://raw.githubusercontent.com/devicons/devicon/master/icons/${imageFolderName}/${imageFileName}`, language);
           languageDiv.appendChild(image);
           languageDiv.appendChild(createParagraph(language));
-          languageDiv.appendChild(createParagraph(`${year} - ${calculateYearsSince(year)} years`));
+          languageDiv.appendChild(createParagraph(`${calculateYearsSince(year)} years`, 'years-grey'));
           languagesContainer.appendChild(languageDiv);
         }
 
