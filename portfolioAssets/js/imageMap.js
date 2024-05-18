@@ -1,7 +1,7 @@
 // Fetch the language data from the YAML file
 async function fetchLanguages() {
   try {
-    const response = await fetch('portfolioAssets/yaml/languages.yaml');
+    const response = await fetch('portfolioAssets/yaml/languages.yml');
 
     if (!response.ok) {
       throw new Error(`Network response was not ok. Status: ${response.status}`);
