@@ -174,8 +174,7 @@ h1, h2 {
 }
 
 .years-grey {
-  color: grey !important;
-  font-style: italic;
+  color: #408080 !important;
 }
 
 .info-container :link, .info-container :visited {
