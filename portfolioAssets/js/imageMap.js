@@ -44,10 +44,28 @@ function createParagraph(text, className = '') {
   return p;
 }
 
-// Function to calculate the years since a given year
-function calculateYearsSince(year) {
+// Function to calculate the time since a given year
+function calculateTimeSince(year) {
   const currentYear = new Date().getFullYear();
-  return currentYear - year;
+  const currentMonth = new Date().getMonth() + 1; // JavaScript months are 0-based
+  const languageStartYear = parseInt(year);
+  const languageStartMonth = 1; // Assuming the language was started in January
+
+  let yearsSince = currentYear - languageStartYear;
+  let monthsSince = currentMonth - languageStartMonth;
+
+  if (monthsSince < 0) {
+    yearsSince -= 1;
+    monthsSince += 12;
+  }
+
+  if (yearsSince > 1) {
+    return `${yearsSince} years`;
+  } else if (yearsSince === 1) {
+    return '1 year';
+  } else {
+    return `${monthsSince} month${monthsSince !== 1 ? 's' : ''}`;
+  }
 }
 
 // Function to display languages with corresponding images
@@ -85,7 +103,7 @@ function displayLanguages(categories) {
             const image = createImage(`portfolioAssets/images/${transformedCodeName}.svg`, language);
             languageDiv.appendChild(image);
             languageDiv.appendChild(createParagraph(language));
-            languageDiv.appendChild(createParagraph(`${calculateYearsSince(year)} years`, 'years-grey'));
+            languageDiv.appendChild(createParagraph(calculateTimeSince(year), 'years-grey'));
             languagesContainer.appendChild(languageDiv);
             continue;
           }
@@ -97,7 +115,7 @@ function displayLanguages(categories) {
             const image = createImage(`https://raw.githubusercontent.com/devicons/devicon/master/icons/${imageFolderName}/${imageFileName}`, language);
             languageDiv.appendChild(image);
             languageDiv.appendChild(createParagraph(language));
-            languageDiv.appendChild(createParagraph(`${calculateYearsSince(year)} years`, 'years-grey'));
+            languageDiv.appendChild(createParagraph(calculateTimeSince(year), 'years-grey'));
             languagesContainer.appendChild(languageDiv);
             continue;
           }
@@ -110,7 +128,7 @@ function displayLanguages(categories) {
           const image = createImage(`https://raw.githubusercontent.com/devicons/devicon/master/icons/${imageFolderName}/${imageFileName}`, language);
           languageDiv.appendChild(image);
           languageDiv.appendChild(createParagraph(language));
-          languageDiv.appendChild(createParagraph(`${calculateYearsSince(year)} years`, 'years-grey'));
+          languageDiv.appendChild(createParagraph(calculateTimeSince(year), 'years-grey'));
           languagesContainer.appendChild(languageDiv);
         }
 
