@@ -17,6 +17,7 @@
 
 <body>
 
+
     <!-- block this script from writing anything to console: -->
     <script src='https://s3-us-west-2.amazonaws.com/s.cdpn.io/59639/bundle_copy.js'></script>
         
@@ -65,8 +66,104 @@
         });
         });
       </script>
+
+      <script>
+        // Cookie helper functions
+        function setCookie(name, value, days) {
+            const expires = new Date();
+            expires.setTime(expires.getTime() + (days * 24 * 60 * 60 * 1000));
+            document.cookie = `${name}=${value};expires=${expires.toUTCString()};path=/`;
+        }
+
+        function getCookie(name) {
+            const nameEQ = name + "=";
+            const ca = document.cookie.split(';');
+            for (let i = 0; i < ca.length; i++) {
+                let c = ca[i];
+                while (c.charAt(0) == ' ') c = c.substring(1, c.length);
+                if (c.indexOf(nameEQ) == 0) return c.substring(nameEQ.length, c.length);
+            }
+            return null;
+        }
+
+        // Timer variables
+        let totalTimeSeconds = 0;
+        let sessionStartTime = Date.now();
+        let sessionTimeSeconds = 0;
+        let timerInterval;
+
+        // Format time as HH:MM:SS
+        function formatTime(seconds) {
+            const hours = Math.floor(seconds / 3600);
+            const minutes = Math.floor((seconds % 3600) / 60);
+            const secs = seconds % 60;
+            return `${hours.toString().padStart(2, '0')}:${minutes.toString().padStart(2, '0')}:${secs.toString().padStart(2, '0')}`;
+        }
+
+        // Update display
+        function updateTimerDisplays() {
+            document.getElementById('globalTimer').textContent = `Total Time: ${formatTime(totalTimeSeconds)}`;
+            document.getElementById('sessionTimer').textContent = `Current Session: ${formatTime(sessionTimeSeconds)}`;
+        }
+
+        // Initialize timer
+        function initializeTimer() {
+            // Get saved total time from cookies (defaults to 0 if not found)
+            totalTimeSeconds = parseInt(getCookie('cats_totalTime') || '0');
+            
+            // Update timers every second
+            timerInterval = setInterval(() => {
+                // Update session time
+                sessionTimeSeconds = Math.floor((Date.now() - sessionStartTime) / 1000);
                 
-    <h1 class="txt">Reload if no blue lines are visible <br> Press 'T' to change Text<br></h1>
+                // Update total time (session + previous total)
+                const currentTotalTime = parseInt(getCookie('cats_totalTime') || '0') + sessionTimeSeconds;
+                totalTimeSeconds = currentTotalTime;
+                
+                // Save to cookie every 10 seconds to avoid excessive writes
+                if (sessionTimeSeconds % 10 === 0) {
+                    setCookie('cats_totalTime', (parseInt(getCookie('cats_totalTime') || '0') + sessionTimeSeconds).toString(), 365);
+                    sessionStartTime = Date.now(); // Reset session start for next interval
+                }
+                
+                updateTimerDisplays();
+            }, 1000);
+
+            // Initial display update
+            updateTimerDisplays();
+        }
+
+        // Save time when leaving the page
+        function saveTimeOnExit() {
+            const currentSessionTime = Math.floor((Date.now() - sessionStartTime) / 1000);
+            const savedTime = parseInt(getCookie('cats_totalTime') || '0');
+            setCookie('cats_totalTime', (savedTime + currentSessionTime).toString(), 365);
+        }
+
+        // Initialize timer when page loads
+        document.addEventListener('DOMContentLoaded', function() {
+            initializeTimer();
+        });
+
+        // Save time when user leaves the page
+        window.addEventListener('beforeunload', saveTimeOnExit);
+        window.addEventListener('pagehide', saveTimeOnExit);
+        
+        // Also save periodically and when page becomes hidden
+        document.addEventListener('visibilitychange', function() {
+            if (document.hidden) {
+                saveTimeOnExit();
+                sessionStartTime = Date.now(); // Reset for when they come back
+            }
+        });
+      </script>
+                
+    <h1 class="txt">
+        Reload if no blue lines are visible <br> 
+        Press 'T' to change Text<br>
+        <span id="globalTimer">Total Time: 00:00:00</span><br>
+        <span id="sessionTimer">Current Session: 00:00:00</span>
+    </h1>
     
     <div class="particles-js-canvas-el" id="particles-js"></div>
 </body>
@@ -84,6 +181,18 @@
     top: 0;
     right: 0; 
     z-index: 10;   
+}
+
+#globalTimer {
+    color: #00ff00;
+    font-weight: bold;
+    text-shadow: 0 0 5px #00ff00;
+}
+
+#sessionTimer {
+    color: #ffff00;
+    font-weight: bold;
+    text-shadow: 0 0 5px #ffff00;
 }
 
 .particles-js-canvas-el {
