@@ -1,0 +1,127 @@
+html,
+body {
+  font-family: "Calibri";
+  text-size-adjust: none;
+  -webkit-text-size-adjust: none;
+  -moz-text-size-adjust: none;
+  -ms-text-size-adjust: none;
+}
+
+a {
+  text-decoration: none;
+  color: #ce7545;
+}
+
+.container {
+  background-image: linear-gradient(180deg, #453c33, #33302b);
+  border-radius: 5px;
+  box-shadow: inset 0 1px 3px 0px #544c44, inset 0 -1px 3px 0 #24221e;
+}
+
+/*  */
+
+body{
+  margin: 0;
+  padding: 0;
+  background: #040404;
+  font-family: "Arial", sans-serif;
+  font-size: 14px;
+}
+a{
+  color: #ce7545;
+  text-decoration: none;
+}
+.bg-wrapper{
+  position: relative;
+  width: 100%;
+  background-position: top center;
+  background-repeat: no-repeat;
+  color: #fff;
+  overflow: hidden;
+}
+.container{
+  background-position: top center;
+  background-repeat: no-repeat;
+  margin: 0 auto;
+  width: 810px;
+  box-sizing: border-box;
+}
+.noborder{
+border:none;
+}
+.noshadow{
+box-shadow:none;
+}
+
+@font-face {
+  font-family: "TF2";
+  src: url(TF2.ttf);
+}
+
+.text{
+  font-family: "TF2";
+  font-size: 1.75em;
+  text-align: center;
+  color: white;
+  width: 740px;
+  margin: 0 auto;
+  text-shadow: 1px 1px 3px rgba(0, 0, 0, 1);
+  line-height: 1.2em;
+}
+#bg1,#container_1{
+  height: 600px;
+  background-image: url(images/tfbackground.png);
+  box-shadow: none;
+}
+#container_1{
+  position: relative;
+}
+#timer{
+  position: absolute;
+  top: 232px;
+  left: 142px;
+  width: 526px;
+  height: 227px;
+  display: flex;
+  justify-content: space-between;
+  transform: rotate(0.4deg);
+}
+.timer_element{
+  width: 113px;
+  height: 227px;
+  background-size: cover;
+}
+.timer_0{
+  background-image: url(images/timer_zero.png);
+}
+.timer_1{
+  background-image: url(images/timer_one.png);
+}
+.timer_2{
+  background-image: url(images/timer_two.png);
+}
+.timer_3{
+  background-image: url(images/timer_three.png);
+}
+.timer_4{
+  background-image: url(images/timer_four.png);
+}
+.timer_5{
+  background-image: url(images/timer_five.png);
+}
+.timer_6{
+  background-image: url(images/timer_six.png);
+}
+.timer_7{
+  background-image: url(images/timer_seven.png);
+}
+.timer_8{
+  background-image: url(images/timer_eight.png);
+}
+.timer_9{
+  background-image: url(images/timer_nine.png);
+}
+
+.timer_0, .timer_1, .timer_2, .timer_3, .timer_4, .timer_5, .timer_6, .timer_7, .timer_8, .timer_9{
+ transition: all 0.5s ease-in-out;
+}
