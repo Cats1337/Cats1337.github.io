@@ -1,98 +1,30 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Landing Page</title>
-    <link rel="icon" type="image/x-icon" href="portfolioAssets/images/cattap.gif">
-    <link rel="stylesheet" href="portfolioAssets/css/style.css">
-</head>
-<style>
-    .buttons-container{
-        /* center */
-        display: flex;
-        justify-content: center;
-        align-items: center;
-        margin: auto;
-        gap: 15%;
-    }
-    .buttons{
-        /* center */
-        display: flex;
-        justify-content: center;
-        align-items: center;
-        margin: auto;
-        flex-direction: row;
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="icon" type="image/x-icon" href="/assets/cattap-03cfbd1b.gif">
+    <script src="https://kit.fontawesome.com/69e14b7ae1.js" crossorigin="anonymous"></script>
+    <link href="https://fonts.googleapis.com/css2?family=La+Belle+Aurore&family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap" rel="stylesheet">
+    <link href="https://fonts.cdnfonts.com/css/space-marine" rel="stylesheet">
+    <title>Cats1337</title>
+    <author>Cats</author>
 
-        display: inline-grid;
-        background-color: #434343;
-        padding: 10px;
-        border-radius: 10px;
-        box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-        border: 2px solid #82addb;
-        animation: form-fade 1.5s ease forwards, border-color-change 2s infinite alternate;
+    <!-- Google tag (gtag.js) -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id=YOUR_GA_MEASUREMENT_ID"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+    gtag('config', 'YOUR_GA_MEASUREMENT_ID');
+  </script>
 
-        width: 100%;
-        color: aqua !important;
-        text-decoration: none !important;
-    }
-    .wrapper{
-        display: flex;
-        flex-direction: column;
-        height: 15%;
-    }
-    .socials {
-        display: grid;
-        grid-template-columns: repeat(2, 1fr);
-        justify-content: center;
-        text-align: center;
-    }
-    .socials p {
-        color: white;
-        margin: 0;
-    }
-</style>
-<body>
-<!-- 
-    Buttons to redirect to portfolio and counter 
-    Socials;, GitHub, Discord
-        usernames: Cats1337, Cats1337
--->
-<!-- Buttons next to each other -->
-    <div class="wrapper">
-
-        <div class="buttons-container">
-            <a class="buttons" href="portfolio">
-                Portfolio
-            </a>
-        </div>
-        <div class="buttons-container">
-            <a class="buttons" href="counter">
-                Counter
-            </a>
-            <a class="buttons" href="oldportfolio">
-                Old
-            </a>
-            <a class="buttons" href="hands">
-                Hands
-            </a>
-            <a class="buttons" href="AI-Web">
-                Ai-Web
-            </a>
-        </div>
-        <div class="buttons-container">
-            <div class="socials">
-                <!-- GitHub-->
-            <a href="https://github.com/Cats1337" target="_blank">
-                <img src="portfolioAssets/images/github.svg" alt="GitHub">
-            </a>
-                <!-- Discord -->
-            <a href="https://discord.com/users/123889840726081536" target="_blank">
-                <img src="portfolioAssets/images/discord.svg" alt="Discord">
-            </a>
-            <p style="grid-column: 1 / span 2">Cats1337</p>
-            </div>
-        </div>
-    </div>
-</body>
+    <script type="module" crossorigin src="/assets/index-3122a288.js"></script>
+    <link rel="stylesheet" href="/assets/index-63670e40.css">
+  </head>
+  <body>
+    <div id="root"></div>
+    
+    <script src="https://cdn.rawgit.com/progers/pathseg/master/pathseg.js"></script>
+  </body>
 </html>
