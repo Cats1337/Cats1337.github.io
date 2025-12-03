@@ -1,0 +1,530 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <link rel="icon" type="image/x-icon" href="/assets/cattap-03cfbd1b.gif">
+  <title>Directory</title>
+  <style>
+    :root {
+      color-scheme: dark;
+      --bg: #050814;
+      --bg-alt: #080c1b;
+
+      /* Steam-ish blues / cyans */
+      --card: rgba(8, 12, 27, 0.92);
+      --card-border: #28364f;
+      --accent: #00b4ff;
+      --accent2: #00f5d4;
+      --accent-soft: rgba(0, 180, 255, 0.25);
+      --accent-soft-2: rgba(0, 245, 212, 0.18);
+
+      --text: #f5f5ff;
+      --muted: #a4a7c4;
+
+      --online: #3fe28f;
+      --offline: #ff5c7a;
+    }
+
+    * {
+      box-sizing: border-box;
+    }
+
+    body {
+      font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+      max-width: 1000px;
+      margin: 0 auto;
+      padding: 2.5rem 1.25rem 3rem;
+      color: var(--text);
+      background:
+        radial-gradient(circle at 0% 0%, rgba(0, 180, 255, 0.18), transparent 55%),
+        radial-gradient(circle at 100% 0%, rgba(0, 245, 212, 0.13), transparent 55%),
+        radial-gradient(circle at 50% 120%, #141b3a 0, #050814 55%);
+      min-height: 100vh;
+      position: relative;
+      overflow-x: hidden;
+    }
+
+    body::before {
+      content: "";
+      position: fixed;
+      inset: -40px;
+      pointer-events: none;
+      background: radial-gradient(circle at 50% -10%, rgba(255, 255, 255, 0.08), transparent 60%);
+      opacity: 0.25;
+      mix-blend-mode: screen;
+      z-index: -1;
+    }
+
+    header {
+      margin-bottom: 2rem;
+      position: relative;
+      display: flex;
+      align-items: center;
+      gap: 1.25rem;
+    }
+
+    .title-wrap {
+      flex: 1;
+    }
+
+    h1 {
+      font-size: 2.2rem;
+      margin: 0 0 0.4rem;
+      letter-spacing: 0.06em;
+      text-transform: uppercase;
+      text-shadow: 0 0 26px rgba(0, 0, 0, 0.9);
+    }
+
+    .subtitle {
+      color: var(--muted);
+      font-size: 0.9rem;
+      max-width: 520px;
+    }
+
+    .subtitle code {
+      background: rgba(255, 255, 255, 0.06);
+      padding: 0.1rem 0.35rem;
+      border-radius: 4px;
+      font-size: 0.85em;
+    }
+
+    .glow-orb {
+      position: absolute;
+      right: -80px;
+      top: -80px;
+      width: 220px;
+      height: 220px;
+      border-radius: 999px;
+      /* dark, ominous core with metallic purple-red glow */
+      background: radial-gradient(circle at 30% 30%, rgba(28,8,28,0.98) 0%, rgba(64,12,44,0.9) 25%, rgba(123,92,255,0.18) 55%, transparent 70%);
+      opacity: 0.95;
+      filter: blur(2px) saturate(1.1);
+      pointer-events: none;
+      mix-blend-mode: screen;
+      /* slow drifting movement */
+      transform-origin: center;
+      animation: orb-drift 12s ease-in-out infinite;
+    }
+
+    /* pulse layer (separate element to allow combined transforms) */
+    .glow-orb::before {
+      content: "";
+      position: absolute;
+      inset: 0;
+      border-radius: inherit;
+      background: radial-gradient(circle at 30% 30%, rgba(123,92,255,0.95) 0%, rgba(220,20,60,0.55) 40%, rgba(0,0,0,0) 65%);
+      filter: blur(36px) saturate(1.3);
+      opacity: 0.9;
+      mix-blend-mode: screen;
+      pointer-events: none;
+      transform-origin: center;
+      animation: orb-pulse 4.2s ease-in-out infinite;
+    }
+
+    /* small inner core to add menace */
+    .glow-orb::after {
+      content: "";
+      position: absolute;
+      left: 50%;
+      top: 50%;
+      width: 40%;
+      height: 40%;
+      transform: translate(-50%, -50%);
+      border-radius: 50%;
+      background: radial-gradient(circle at 40% 40%, rgba(8,4,8,0.95), rgba(36,8,24,0.9));
+      box-shadow: 0 0 40px rgba(0,0,0,0.8) inset;
+      opacity: 0.9;
+      pointer-events: none;
+    }
+
+
+    ul {
+      list-style: none;
+      padding: 0;
+      margin: 0;
+      display: grid;
+      gap: 1.1rem;
+    }
+
+    @media (min-width: 780px) {
+      ul {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+      }
+    }
+
+    .site-card {
+      display: block;
+      height: 100%;
+      padding: 1rem 1.1rem 0.95rem;
+      border-radius: 1rem;
+      background:
+        linear-gradient(135deg, rgba(12, 18, 45, 0.97), rgba(6, 9, 22, 0.96));
+      border: 1px solid rgba(79, 88, 138, 0.8);
+      text-decoration: none;
+      color: inherit;
+      position: relative;
+      overflow: hidden;
+      cursor: pointer;
+      backdrop-filter: blur(18px);
+      -webkit-backdrop-filter: blur(18px);
+      box-shadow:
+        0 0 0 1px rgba(0, 0, 0, 0.6),
+        0 18px 45px rgba(0, 0, 0, 0.95);
+      background-size: 140% 140%;
+      background-position: 0% 50%;
+      transition:
+        transform 0.18s ease-out,
+        box-shadow 0.18s ease-out,
+        border-color 0.18s ease-out,
+        background-position 0.28s ease-out,
+        opacity 0.18s ease-out;
+    }
+
+    /* Online / offline state affecting card */
+    .site-card.online {
+      border-color: rgba(0, 245, 212, 0.55);
+    }
+
+    .site-card.offline {
+      border-color: rgba(255, 92, 122, 0.65);
+    }
+
+    .site-card::before {
+      content: "";
+      position: absolute;
+      inset: 0;
+      border-radius: inherit;
+      background:
+        radial-gradient(circle at 0% 0%, rgba(0, 180, 255, 0.2), transparent 60%),
+        radial-gradient(circle at 100% 100%, rgba(0, 245, 212, 0.18), transparent 55%);
+      opacity: 0;
+      transition: opacity 0.22s ease-out;
+      pointer-events: none;
+      mix-blend-mode: screen;
+    }
+
+    .site-card::after {
+      content: "";
+      position: absolute;
+      inset: 1px;
+      border-radius: inherit;
+      background:
+        radial-gradient(circle at 0% 0%, var(--accent-soft), transparent 65%),
+        radial-gradient(circle at 100% 100%, var(--accent-soft-2), transparent 55%),
+        linear-gradient(145deg, rgba(12, 18, 45, 0.95), rgba(6, 9, 22, 0.96));
+      z-index: -1;
+    }
+
+    /* Online card tint */
+    .site-card.online::after {
+      background:
+        radial-gradient(circle at 0% 0%, rgba(0, 245, 212, 0.18), transparent 70%),
+        radial-gradient(circle at 100% 100%, rgba(0, 200, 255, 0.26), transparent 55%),
+        linear-gradient(145deg, #061b22, #05111d);
+    }
+
+    /* Offline card tint */
+    .site-card.offline::after {
+      background:
+        radial-gradient(circle at 0% 0%, rgba(255, 120, 146, 0.21), transparent 70%),
+        radial-gradient(circle at 100% 100%, rgba(255, 90, 120, 0.18), transparent 55%),
+        linear-gradient(145deg, #180915, #090812);
+    }
+
+    .site-card:hover,
+    .site-card:focus-visible {
+      transform: translateY(-3px);
+      outline: none;
+      box-shadow:
+        0 0 0 1px rgba(0, 0, 0, 0.4),
+        0 22px 55px rgba(0, 0, 0, 1);
+      background-position: 35% 50%;
+    }
+
+    .site-card:hover::before,
+    .site-card:focus-visible::before {
+      opacity: 1;
+    }
+
+    .site-title {
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+      margin-bottom: 0.4rem;
+    }
+
+    .site-title h2 {
+      margin: 0;
+      font-size: 1.1rem;
+      line-height: 1.2;
+      letter-spacing: 0.03em;
+    }
+
+    .status-dot {
+      width: 10px;
+      height: 10px;
+      border-radius: 999px;
+      background: #5a5a6f;
+      box-shadow: 0 0 0 1px rgba(0, 0, 0, 0.8);
+      flex-shrink: 0;
+      position: relative;
+    }
+
+    .status-dot.online {
+      background: var(--online);
+      box-shadow:
+        0 0 0 1px rgba(0, 0, 0, 0.9),
+        0 0 10px rgba(63, 226, 143, 0.95);
+    }
+
+    .status-dot.offline {
+      background: var(--offline);
+      box-shadow:
+        0 0 0 1px rgba(0, 0, 0, 0.9),
+        0 0 10px rgba(255, 92, 122, 0.95);
+    }
+
+    .site-description {
+      margin: 0.15rem 0 0.65rem;
+      font-size: 0.9rem;
+      color: var(--muted);
+    }
+
+    .card-footer {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      font-size: 0.8rem;
+      color: #c4c7ff;
+      gap: 0.6rem;
+    }
+
+    .site-url {
+      font-family: "JetBrains Mono", ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace;
+      opacity: 0.9;
+      word-break: break-all;
+    }
+
+    .status-label {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.3rem;
+      padding: 0.2rem 0.55rem;
+      border-radius: 999px;
+      background: rgba(255, 255, 255, 0.03);
+      border: 1px solid rgba(255, 255, 255, 0.08);
+      color: var(--muted);
+      font-size: 0.72rem;
+      white-space: nowrap;
+      transition: border-color 0.18s ease-out, background-color 0.18s ease-out, color 0.18s ease-out;
+    }
+
+    .status-label.online {
+      background: rgba(0, 245, 212, 0.08);
+      border-color: rgba(0, 245, 212, 0.5);
+      color: #d7fff7;
+    }
+
+    .status-label.offline {
+      background: rgba(255, 92, 122, 0.08);
+      border-color: rgba(255, 92, 122, 0.55);
+      color: #ffd7e0;
+    }
+
+    .status-text {
+      text-transform: uppercase;
+      letter-spacing: 0.14em;
+      font-size: 0.68rem;
+    }
+
+    @media (max-width: 480px) {
+      header {
+        flex-direction: row;
+        align-items: flex-start;
+      }
+
+      h1 {
+        font-size: 1.7rem;
+      }
+
+      .subtitle {
+        font-size: 0.85rem;
+      }
+    }
+
+    @keyframes orb-pulse {
+      0% { transform: scale(0.94); opacity: 0.6 }
+      50% { transform: scale(1.08) rotate(3deg); opacity: 1 }
+      100% { transform: scale(0.94); opacity: 0.6 }
+    }
+
+    @keyframes orb-drift {
+      0% { transform: translate(0,0) rotate(0deg) }
+      25% { transform: translate(-12px,6px) rotate(-2deg) }
+      50% { transform: translate(-6px,12px) rotate(1deg) }
+      75% { transform: translate(10px,4px) rotate(3deg) }
+      100% { transform: translate(0,0) rotate(0deg) }
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <div class="title-wrap">
+      <h1>Directory</h1>
+      <p class="subtitle">
+        Index of all subpages dynamically loaded from <code>sites.json</code>.
+      </p>
+      <p class="subtitle">
+        Cards open in a new tab, dot and tint show if the page is responding.
+      </p>
+    </div>
+    <div class="glow-orb"><!-- IGNORE THE OMINOUS ORB --></div>
+  </header>
+
+  <ul id="sites-list">
+    <!-- Filled by JavaScript -->
+  </ul>
+
+  <script>
+    function setStatus(el, ok) {
+      el.classList.remove("online", "offline");
+      el.classList.add(ok ? "online" : "offline");
+      el.dataset.status = ok ? "online" : "offline";
+
+      // Also color the card itself
+      const card = el.closest(".site-card");
+      if (card) {
+        card.classList.remove("online", "offline");
+        card.classList.add(ok ? "online" : "offline");
+      }
+    }
+
+    async function checkStatus(url, dotEl, labelEl) {
+      labelEl.textContent = "Checking";
+
+      async function attempt(u) {
+        try {
+          let res = await fetch(u, { method: "HEAD" });
+          if (res.ok) return true;
+          res = await fetch(u, { cache: "no-store" });
+          return !!res.ok;
+        } catch {
+          return false;
+        }
+      }
+
+      try {
+        const ok = await attempt(url);
+        if (ok) {
+          setStatus(dotEl, true);
+          labelEl.textContent = "Online";
+          return;
+        }
+
+        const alt = url.endsWith("/") ? url.slice(0, -1) : url + "/";
+        const okAlt = await attempt(alt);
+        setStatus(dotEl, okAlt);
+        labelEl.textContent = okAlt ? "Online" : "Offline";
+      } catch {
+        setStatus(dotEl, false);
+        labelEl.textContent = "Offline";
+      }
+    }
+
+    document.addEventListener("DOMContentLoaded", () => {
+      const list = document.getElementById("sites-list");
+
+      fetch("sites.json")
+        .then((res) => {
+          if (!res.ok) {
+            throw new Error("Failed to load sites.json");
+          }
+          return res.json();
+        })
+        .then((sites) => {
+          sites.forEach((site) => {
+            const li = document.createElement("li");
+            const url = `https://cats1337.github.io/${site.subdirectory}`;
+
+            const card = document.createElement("a");
+            card.href = url;
+            card.target = "_blank";
+            card.rel = "noopener noreferrer";
+            card.className = "site-card";
+
+            const titleRow = document.createElement("div");
+            titleRow.className = "site-title";
+
+            const statusDot = document.createElement("span");
+            statusDot.className = "status-dot";
+            statusDot.title = "Checking status";
+
+            const title = document.createElement("h2");
+            title.textContent = site.subdirectory;
+
+            titleRow.appendChild(statusDot);
+            titleRow.appendChild(title);
+
+            const desc = document.createElement("p");
+            desc.className = "site-description";
+            desc.textContent = site.description;
+
+            const footer = document.createElement("div");
+            footer.className = "card-footer";
+
+            const urlEl = document.createElement("div");
+            urlEl.className = "site-url";
+            urlEl.textContent = url;
+
+            const statusLabel = document.createElement("div");
+            statusLabel.className = "status-label";
+
+            const statusInnerDot = document.createElement("span");
+            statusInnerDot.className = "status-dot";
+            statusInnerDot.style.width = "8px";
+            statusInnerDot.style.height = "8px";
+
+            const statusText = document.createElement("span");
+            statusText.className = "status-text";
+            statusText.textContent = "Checking";
+
+            statusLabel.appendChild(statusInnerDot);
+            statusLabel.appendChild(statusText);
+
+            footer.appendChild(urlEl);
+            footer.appendChild(statusLabel);
+
+            card.appendChild(titleRow);
+            card.appendChild(desc);
+            card.appendChild(footer);
+
+            li.appendChild(card);
+            list.appendChild(li);
+
+            checkStatus(url, statusDot, statusText);
+
+            const observer = new MutationObserver(() => {
+              statusInnerDot.classList.remove("online", "offline");
+              statusLabel.classList.remove("online", "offline");
+
+              if (statusDot.classList.contains("online")) {
+                statusInnerDot.classList.add("online");
+                statusLabel.classList.add("online");
+              } else if (statusDot.classList.contains("offline")) {
+                statusInnerDot.classList.add("offline");
+                statusLabel.classList.add("offline");
+              }
+            });
+
+            observer.observe(statusDot, { attributes: true, attributeFilter: ["class"] });
+          });
+        })
+        .catch((err) => {
+          console.error(err);
+          list.textContent = "Failed to load site list.";
+        });
+    });
+  </script>
+</body>
+</html>
