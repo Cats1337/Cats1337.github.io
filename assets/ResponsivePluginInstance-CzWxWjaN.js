@@ -1,0 +1,1 @@
+var e=class{#e;constructor(e){this.#e=e}updateActualOptions(){let e=this.#e;e.actualOptions.responsive=[];let t=e.actualOptions.setResponsive?.(e.canvas.size.width,e.retina.pixelRatio,e.options);return e.responsiveMaxWidth===t?!1:(e.responsiveMaxWidth=t,!0)}};export{e as ResponsivePluginInstance};

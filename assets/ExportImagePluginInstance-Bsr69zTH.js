@@ -1,0 +1,1 @@
+var e=class{#e;constructor(e){this.#e=e}async export(e,t){let n={supported:!1};switch(e){case`image`:n.supported=!0,n.blob=await this.#t(t);break}return n}async#t(e){let t=this.#e.canvas.domElement;if(t)return new Promise(n=>{t.toBlob(e=>{if(!e){n(void 0);return}n(e)},e.type??`image/png`,e.quality)})}};export{e as ExportImagePluginInstance};

@@ -1,0 +1,26 @@
+[
+  {
+    "subdirectory": "portfolio",
+    "description": "My portfolio."
+  },
+  {
+    "subdirectory": "counter",
+    "description": "Days since last major TF2 update."
+  },
+  {
+    "subdirectory": "hands",
+    "description": "Cat hands simulation."
+  },
+  {
+    "subdirectory": "AI-Web",
+    "description": "School project: Explaining AI at various levels."
+  },
+  {
+    "subdirectory": "ai-society",
+    "description": "School project: AI in Society Final about AI Age Verification."
+  },
+  {
+    "subdirectory": "offline",
+    "description": "Example offline page."
+  }
+]
