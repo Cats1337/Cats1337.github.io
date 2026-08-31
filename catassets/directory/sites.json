@@ -20,7 +20,7 @@
     "description": "School project: AI in Society Final about AI Age Verification."
   },
   {
-    "subdirectory": "Minecraft UUID Tool",
+    "subdirectory": "mc-uuid",
     "description": "Batch get Minecraft UUIDs from usernames."
   },
   {
