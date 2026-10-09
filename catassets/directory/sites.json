@@ -24,6 +24,10 @@
     "description": "Batch get Minecraft UUIDs from usernames."
   },
   {
+    "subdirectory": "prisoners",
+    "description": "BattleBlock Theater Prisoner Registry."
+  },
+  {
     "subdirectory": "offline",
     "description": "Example offline page."
   }
